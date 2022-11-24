@@ -5,8 +5,11 @@ import {
   loginUser,
   authUser,
   logoutUser,
+  changePassword,
+  forgetPassword,
+  tokenVerification,
 } from "../controllers/user.controller.js";
-
+import { authorizePasswordChange } from "../middlewares/auth.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -25,5 +28,11 @@ router.post("/login", loginUser);
 router.post("/auth", authUser);
 
 router.post("/logout", logoutUser);
+
+router.post("/forget-password", forgetPassword);
+
+router.post("/verify-token", tokenVerification);
+
+router.post("/change-password/:id", authorizePasswordChange, changePassword);
 
 export default router;
