@@ -6,8 +6,19 @@ const subscriptionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    razorpay_payment_id: {
+      type: String,
+      required: true,
+    },
+    razorpay_order_id: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-export const Subscriptions = mongoose.model("Subscription", subscriptionSchema);
+export const Subscriptions = mongoose.model(
+  "KanBanSubscription",
+  subscriptionSchema
+);
