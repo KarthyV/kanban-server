@@ -123,6 +123,7 @@ const forgetPassword = async (req, res) => {
   const { email } = req.body;
   try {
     const user = await Users.findOne({ email });
+    console.log(user);
     if (!user) return res.status(403).send({ message: "User not found" });
     const token = jwt.sign(
       { _id: user._id, email: email },
@@ -131,6 +132,7 @@ const forgetPassword = async (req, res) => {
         expiresIn: "10m",
       }
     );
+    console.log(token);
     await nodeMailer(email, token);
     res.status(200).send({ user, token });
   } catch (error) {

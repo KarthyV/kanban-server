@@ -21,6 +21,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await Users.findById(id);
+    return res.status(200).send(user);
+  } catch (error) {
+    res.status(500).send({ message: "Something went wrong" });
+  }
+});
+
 router.post("/signup", createUser);
 
 router.post("/login", loginUser);
