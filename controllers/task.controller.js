@@ -5,7 +5,7 @@ const getAllTasks = async (req, res) => {
     const tasks = await Tasks.find();
     return res.status(200).send(tasks);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ message: "from All" });
   }
 };
 
